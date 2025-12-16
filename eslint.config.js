@@ -7,7 +7,7 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
 
 export default [
-  { ignores: ['dist'] },
+  { ignores: ['dist', 'node_modules', '.git', 'coverage'] },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
