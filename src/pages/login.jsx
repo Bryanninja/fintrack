@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { toast } from 'sonner';
@@ -25,35 +25,34 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import PasswordInput from '@/components/ui/password-input';
+import { AuthContext } from '@/contexts/auth';
 import { api } from '@/lib/axios';
 
 const loginSchema = z.object({
   email: z
     .string()
     .email({
-      message: 'O E-mail é inváliddo',
+      message: 'O E-mail é inválido!',
     })
     .trim()
     .min(1, {
-      message: 'O email é obrigátorio',
+      message: 'O E-mail é obrigátorio!',
     }),
-
-  password: z.string().trim().min(6, {
-    message: 'A senha deve ter no minímo 6 caracteres',
+  password: z.string().min(6, {
+    message: 'A senha deve conter no minimo 6 caracteres',
   }),
 });
 
 const LoginPage = () => {
+  const { user: userTest } = useContext(AuthContext);
+
   const [user, setUser] = useState(null);
 
-  const loginMutation = useMutation({
-    mutationKey: ['login'],
-    mutationFn: async (variables) => {
-      const response = await api.post('/users/login', {
-        email: variables.email,
-        password: variables.password,
-      });
-      return response.data;
+  const form = useForm({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
     },
   });
 
@@ -68,7 +67,6 @@ const LoginPage = () => {
             Authorization: `Bearer ${accessToken}`,
           },
         });
-
         setUser(response.data);
       } catch (error) {
         localStorage.removeItem('accessToken');
@@ -79,23 +77,30 @@ const LoginPage = () => {
     init();
   }, []);
 
-  const form = useForm({
-    resolver: zodResolver(loginSchema),
-    defaultValues: {
-      email: '',
-      password: '',
+  const loginMutation = useMutation({
+    mutationKey: ['login'],
+    mutationFn: async (variables) => {
+      const response = await api.post('/users/login', {
+        email: variables.email,
+        password: variables.password,
+      });
+      return response.data;
     },
   });
 
-  const handleSubmit = (data) => {
+  if (user) {
+    return <h1>Olá, {user.first_name}</h1>;
+  }
+
+  const handleLogin = (data) => {
     loginMutation.mutate(data, {
       onSuccess: (loggedUser) => {
         const accessToken = loggedUser.tokens.accessToken;
         const refreshToken = loggedUser.tokens.refreshToken;
-        setUser(loggedUser);
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-        toast.success('Login realizado com sucesso');
+        toast.success('Login realizado com sucesso!');
+        setUser(loggedUser);
       },
       onError: () => {
         toast.error('Erro ao fazer login, tente novamente mais tarde');
@@ -103,14 +108,11 @@ const LoginPage = () => {
     });
   };
 
-  if (user) {
-    return <h1>Olá {user.first_name}!</h1>;
-  }
-
   return (
     <div className="flex h-screen w-screen flex-col items-center justify-center gap-3">
+      <h1>{userTest}</h1>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleSubmit)}>
+        <form onSubmit={form.handleSubmit(handleLogin)}>
           <Card className="w-[500px]">
             <CardHeader>
               <CardTitle className="text-center">Entre na sua conta</CardTitle>
@@ -119,7 +121,7 @@ const LoginPage = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {/* E-MAIL */}
+              {/* Campo E-MAIL */}
               <FormField
                 control={form.control}
                 name="email"
@@ -132,9 +134,9 @@ const LoginPage = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              ></FormField>
+              />
 
-              {/* SENHA */}
+              {/* Campo SENHA */}
               <FormField
                 control={form.control}
                 name="password"
@@ -147,10 +149,14 @@ const LoginPage = () => {
                     <FormMessage />
                   </FormItem>
                 )}
-              ></FormField>
+              />
             </CardContent>
             <CardFooter className="flex-col gap-2">
-              <Button type="submit" className="w-full">
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={loginMutation.isPending}
+              >
                 Login
               </Button>
               <Button variant="outline" className="w-full">
