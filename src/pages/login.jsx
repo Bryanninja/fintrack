@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
 import { toast } from 'sonner';
@@ -25,7 +25,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import PasswordInput from '@/components/ui/password-input';
-import { AuthContext } from '@/contexts/auth';
+import { useAuthContext } from '@/contexts/auth';
 import { api } from '@/lib/axios';
 
 const loginSchema = z.object({
@@ -44,7 +44,7 @@ const loginSchema = z.object({
 });
 
 const LoginPage = () => {
-  const { user: userTest } = useContext(AuthContext);
+  const { user: userTest } = useAuthContext();
 
   const [user, setUser] = useState(null);
 
