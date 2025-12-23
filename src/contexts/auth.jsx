@@ -6,6 +6,7 @@ import { api } from '@/lib/axios';
 
 export const AuthContext = createContext({
   user: null,
+  isInitializing: true,
   login: () => {},
   signup: () => {},
 });
@@ -27,6 +28,7 @@ const removeTokens = () => {
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState();
+  const [isInitializing, setIsInitializing] = useState(true);
 
   const loginMutation = useMutation({
     mutationKey: ['login'],
@@ -42,6 +44,7 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const init = async () => {
       try {
+        setIsInitializing(true);
         const accessToken = localStorage.getItem(
           LOCAL_STORAGE_ACCESS_TOKEN_KEY
         );
@@ -58,6 +61,8 @@ export const AuthContextProvider = ({ children }) => {
       } catch (error) {
         removeTokens();
         console.log(error);
+      } finally {
+        setIsInitializing(false);
       }
     };
     init();
@@ -80,7 +85,7 @@ export const AuthContextProvider = ({ children }) => {
     signupMutation.mutate(data, {
       onSuccess: (createdUser) => {
         setUser(createdUser);
-        setTokens(createdUser);
+        setTokens(createdUser.tokens);
         toast.success('Conta criada com sucesso');
       },
       onError: () => {
@@ -94,7 +99,7 @@ export const AuthContextProvider = ({ children }) => {
   const login = (data) => {
     loginMutation.mutate(data, {
       onSuccess: (loggedUser) => {
-        setTokens(loggedUser);
+        setTokens(loggedUser.tokens);
         setUser(loggedUser);
         toast.success('Login realizado com sucesso!');
       },
@@ -109,6 +114,7 @@ export const AuthContextProvider = ({ children }) => {
         user,
         login,
         signup,
+        isInitializing,
       }}
     >
       {children}

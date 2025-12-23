@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, Navigate } from 'react-router';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
@@ -40,7 +40,7 @@ const loginSchema = z.object({
 });
 
 const LoginPage = () => {
-  const { user, login, isPending } = useAuthContext();
+  const { user, login, isInitializing } = useAuthContext();
 
   const form = useForm({
     resolver: zodResolver(loginSchema),
@@ -50,8 +50,9 @@ const LoginPage = () => {
     },
   });
 
+  if (isInitializing) return null;
   if (user) {
-    return <h1>Olá, {user.first_name}</h1>;
+    return <Navigate to="/" />;
   }
 
   const handleLogin = (data) => login(data);
@@ -99,7 +100,7 @@ const LoginPage = () => {
               />
             </CardContent>
             <CardFooter className="flex-col gap-2">
-              <Button type="submit" className="w-full" disabled={isPending}>
+              <Button type="submit" className="w-full">
                 Login
               </Button>
               <Button variant="outline" className="w-full">
