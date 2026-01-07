@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, Navigate } from 'react-router';
 import { z } from 'zod';
 
+import PasswordInput from '@/components/password-input';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -23,7 +24,6 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import PasswordInput from '@/components/ui/password-input';
 import { useAuthContext } from '@/contexts/auth';
 
 const signupSchema = z
