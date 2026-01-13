@@ -19,14 +19,14 @@ const Header = () => {
   const { user, signOut } = useAuthContext();
   return (
     <Card>
-      <CardContent className="flex items-center justify-between rounded-none px-8 py-6">
+      <CardContent className="flex items-center justify-between px-8 py-6">
         <div>
           <img src={Logo} alt="Fintrack brand logo" />
         </div>
 
         <div>
           <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger asChild>
               <Button variant="outline" className="space-x-1">
                 <Avatar className="h-6 w-6">
                   <AvatarImage src="https://github.com/shadcn.png" />
