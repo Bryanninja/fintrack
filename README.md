@@ -1,7 +1,6 @@
 # 💰 FinTrack - Controle Financeiro Inteligente
 
-![Capa do Projeto](<img width="1442" height="924" alt="Dashboard Content" src="https://github.com/user-attachments/assets/cceee851-e050-41f5-9952-0c3b4e489e87" />
-)![Uploading Dashboard Content.png…]()
+<img width="1442" height="924" alt="Dashboard Content" src="https://github.com/user-attachments/assets/a919d9b5-db7e-4c19-941e-5d37ef5a9e57" />
 
 *(Dica: Coloque aqui um print da tela principal ou um GIF você usando o app)*
 
@@ -10,7 +9,6 @@ O FinTrack é uma aplicação web completa para gestão financeira pessoal. O ob
 
 ## 🚀 Tecnologias Utilizadas
 * **Front-end:** React.js, Tailwind CSS
-* **Back-end:** (Se tiver, liste aqui, ex: Node.js, Java Spring)
 * **Autenticação:** (Ex: JWT, Firebase Auth)
 * **Outros:** TanStack Query, Axios.
 
