@@ -2,8 +2,6 @@
 
 <img width="1442" height="924" alt="Dashboard Content" src="https://github.com/user-attachments/assets/a919d9b5-db7e-4c19-941e-5d37ef5a9e57" />
 
-*(Dica: Coloque aqui um print da tela principal ou um GIF você usando o app)*
-
 ## Sobre o Projeto
 O FinTrack é uma aplicação web completa para gestão financeira pessoal. O objetivo foi criar uma solução segura, com autenticação robusta e uma interface intuitiva para controle de transações.
 
