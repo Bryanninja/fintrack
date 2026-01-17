@@ -5,6 +5,7 @@
 > **Uma aplicação financeira desenvolvida com foco em Arquitetura Escalável, Performance e Experiência do Usuário (UX).**
 <img width="1442" height="996" alt="1" src="https://github.com/user-attachments/assets/9816804c-a1fe-45f3-a3a6-49665fef2871" />
 
+
 O **FinTrack** não é apenas um gerenciador de finanças, é um projeto de estudo avançado sobre como estruturar aplicações React modernas preparadas para o mundo real (Enterprise Level).
 
 ---
