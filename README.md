@@ -7,7 +7,7 @@ O FinTrack é uma aplicação web completa para gestão financeira pessoal. O ob
 
 ## 🚀 Tecnologias Utilizadas
 * **Front-end:** React.js, Tailwind CSS
-* **Autenticação:** (Ex: JWT, Firebase Auth)
+* **Autenticação:** (Ex: JWT & Auth)
 * **Outros:** TanStack Query, Axios.
 
 ## ✨ Funcionalidades
