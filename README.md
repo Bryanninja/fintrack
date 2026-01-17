@@ -1,37 +1,57 @@
-# 💰 FinTrack - Controle Financeiro Inteligente
+# 💰 FinTrack - Gestão Financeira Inteligente
 
-<img width="1442" height="924" alt="Dashboard Content" src="https://github.com/user-attachments/assets/a919d9b5-db7e-4c19-941e-5d37ef5a9e57" />
+![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow) ![React](https://img.shields.io/badge/React-18-blue) ![TanStack Query](https://img.shields.io/badge/State-TanStack_Query-red)
 
-## Sobre o Projeto
-O FinTrack é uma aplicação web completa para gestão financeira pessoal. O objetivo foi criar uma solução segura, com autenticação robusta e uma interface intuitiva para controle de transações.
+> **Uma aplicação financeira desenvolvida com foco em Arquitetura Escalável, Performance e Experiência do Usuário (UX).**
+<img width="1442" height="996" alt="1" src="https://github.com/user-attachments/assets/9816804c-a1fe-45f3-a3a6-49665fef2871" />
 
-## 🚀 Tecnologias Utilizadas
-* **Front-end:** React.js, Tailwind CSS
-* **Autenticação:** (Ex: JWT & Auth)
-* **Outros:** TanStack Query, Axios.
+O **FinTrack** não é apenas um gerenciador de finanças, é um projeto de estudo avançado sobre como estruturar aplicações React modernas preparadas para o mundo real (Enterprise Level).
 
-## ✨ Funcionalidades
-* ✅ Cadastro e Login de usuários (Autenticação segura);
-* ✅ Dashboard com resumo de entradas e saídas;
-* ✅ Filtros por data e categoria;
-* 🚧 *Em desenvolvimento:* Geração de relatórios em PDF.
+---
 
-## 🎨 Diferencial de Design
-Como venho da área de Design, foquei na **Usabilidade (UX)**:
-* Feedback visual imediato para ações do usuário (Toasts);
-* Layout responsivo (Mobile-First);
-* Paleta de cores acessível.
+## 🚀 Tecnologias e Arquitetura
 
-## Como rodar o projeto
+O projeto utiliza a stack mais moderna do mercado para garantir tipagem, validação e performance:
+
+* **Core:** React 18, Vite, React Router v7.
+* **Gerenciamento de Estado:** [TanStack Query (React Query)](https://tanstack.com/query/latest) - Para cache, revalidação e updates otimistas.
+* **Formulários & Validação:** [React Hook Form](https://react-hook-form.com/) integrado com [Zod](https://zod.dev/) para esquemas de validação robustos.
+* **Design System & UI:**
+    * **Tailwind CSS:** Para estilização utilitária.
+    * **Radix UI:** Componentes primitivos acessíveis (Headless UI).
+    * **Shadcn/UI Pattern:** Arquitetura de componentes reutilizáveis usando `cva` (Class Variance Authority) e `clsx`.
+    * **Lucide React:** Ícones leves e modernos.
+* **Qualidade de Código (DX):**
+    * **Husky & Lint-staged:** Hooks de pré-commit para garantir qualidade.
+    * **Commitlint:** Padronização de mensagens de commit (Conventional Commits).
+    * **ESLint & Prettier:** Padronização de código.
+
+---
+
+## 💡 Diferenciais do Projeto
+
+### 1. Arquitetura Orientada a Componentes
+Uso de padrões como **Composition Pattern** e separação clara entre componentes de UI (burros) e componentes de lógica (inteligentes).
+
+### 2. Validação Defensiva
+Todos os inputs do usuário passam por uma camada rigorosa de validação com **Zod**, garantindo que nenhum dado incorreto chegue ao backend ou quebre a interface.
+
+### 3. Feedback Visual (UX)
+Implementação de **Toasters** (Sonner) para feedbacks instantâneos e tratativa de erros amigável para o usuário.
+
+---
+
+## 💻 Como Rodar o Projeto
+
 ```bash
-# Clone o repositório
+# 1. Clone o repositório
 git clone [https://github.com/Bryanninja/fintrack.git](https://github.com/Bryanninja/fintrack.git)
 
-# Entre na pasta
+# 2. Entre na pasta
 cd fintrack
 
-# Instale as dependências
+# 3. Instale as dependências
 npm install
 
-# Rode o projeto
+# 4. Rode o servidor de desenvolvimento
 npm run dev
